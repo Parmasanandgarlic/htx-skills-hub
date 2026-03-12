@@ -63,7 +63,6 @@ Complete API endpoints for HTX USDT-M Futures. All endpoints use base URL `https
 | GET `/linear-swap-ex/market/open_interest` | Query information on open interest | contract_code | None | No |
 | GET `/linear-swap-ex/market/premium_index_kline` | Query Premium Index Kline Data | contract_code, period | size, from, to | No |
 | GET `/linear-swap-ex/market/estimated_funding_rate_kline` | Query Estimated Funding Rate Kline | contract_code, period | size, from, to | No |
-| GET `/linear-swap-ex/market/basis` | Query Basis Data | contract_code, period | size, from, to, basis_price_type | No |
 
 ### Account Interface
 | Endpoint | Description | Required | Optional | Authentication |
@@ -76,11 +75,8 @@ Complete API endpoints for HTX USDT-M Futures. All endpoints use base URL `https
 | POST `/linear-swap-api/v1/swap_account_position_info` | Query Assets And Positions (Isolated) | contract_code | None | Yes |
 | POST `/linear-swap-api/v1/swap_cross_account_position_info` | Query Assets And Positions (Cross) | None | valuation_asset | Yes |
 | POST `/linear-swap-api/v1/swap_sub_account_list` | Set Sub-Account Trading Permissions | sub_uid | trades | Yes |
-| POST `/linear-swap-api/v1/swap_sub_account_trading_permission` | Query sub-account permissions | sub_uid | None | Yes |
 | POST `/linear-swap-api/v1/swap_account_info_list` | Query all sub-accounts (Isolated) | None | None | Yes |
 | POST `/linear-swap-api/v1/swap_cross_account_info_list` | Query all sub-accounts (Cross) | None | valuation_asset | Yes |
-| POST `/linear-swap-api/v1/swap_account_info_batch` | Query batch sub-accounts (Isolated) | sub_uid | None | Yes |
-| POST `/linear-swap-api/v1/swap_cross_account_info_batch` | Query batch sub-accounts (Cross) | sub_uid | valuation_asset | Yes |
 | POST `/linear-swap-api/v1/swap_account_info_sub` | Query single sub-account (Isolated) | contract_code, sub_uid | None | Yes |
 | POST `/linear-swap-api/v1/swap_cross_account_info_sub` | Query sub-account (Cross) | sub_uid | valuation_asset | Yes |
 | POST `/linear-swap-api/v1/swap_position_info_sub` | Query sub-account position (Isolated) | contract_code, sub_uid | None | Yes |
@@ -111,7 +107,6 @@ Complete API endpoints for HTX USDT-M Futures. All endpoints use base URL `https
 | POST `/linear-swap-api/v1/swap_cross_switch_position_mode` | Switch Position Mode (Cross) | mode | contract_code | Yes |
 | POST `/linear-swap-api/v1/swap_order` | Place an Order (Isolated) | contract_code, client_order_id, price, volume, direction, offset, lever_rate, order_price_type | tp_trigger_price, tp_order_price, tp_order_price_type, sl_trigger_price, sl_order_price, sl_order_price_type, reduce_only, hf_order_type | Yes |
 | POST `/linear-swap-api/v1/swap_cross_order` | Place An Order (Cross) | contract_code, client_order_id, price, volume, direction, offset, lever_rate, order_price_type | tp_trigger_price, tp_order_price, tp_order_price_type, sl_trigger_price, sl_order_price, sl_order_price_type, reduce_only, hf_order_type | Yes |
-| POST `/linear-swap-api/v1/swap_batch_orders` | Place a Batch of Orders (Isolated) | orders_data | None | Yes |
 | POST `/linear-swap-api/v1/swap_cross_batch_orders` | Place A Batch Of Orders (Cross) | orders_data | None | Yes |
 | POST `/linear-swap-api/v1/swap_cancel` | Cancel an Order (Isolated) | contract_code, order_id | client_order_id | Yes |
 | POST `/linear-swap-api/v1/swap_cross_cancel` | Cancel An Order (Cross) | order_id | contract_code, client_order_id | Yes |
@@ -161,24 +156,11 @@ Complete API endpoints for HTX USDT-M Futures. All endpoints use base URL `https
 | POST `/linear-swap-api/v1/swap_cross_tpsl_openorders` | Query Open TP/SL Orders (Cross) | None | contract_code, page_index, page_size | Yes |
 | POST `/linear-swap-api/v1/swap_tpsl_hisorders` | Query TP/SL History Orders (Isolated) | contract_code | status, page_index, page_size, sort_by, direct | Yes |
 | POST `/linear-swap-api/v1/swap_cross_tpsl_hisorders` | Query TP/SL History Orders (Cross) | None | contract_code, status, page_index, page_size, sort_by, direct | Yes |
-| POST `/linear-swap-api/v1/swap_tpsl_relation_order_info` | Query TP/SL Order Info (Isolated) | contract_code, order_id | client_order_id | Yes |
-| POST `/linear-swap-api/v1/swap_cross_tpsl_relation_order_info` | Query TP/SL Order Info (Cross) | order_id | contract_code, client_order_id | Yes |
-| POST `/linear-swap-api/v1/swap_trailing_order` | Place Trailing Order (Isolated) | contract_code, volume, direction, offset, lever_rate, trailing_amount, trailing_percent, order_price_type | client_order_id | Yes |
-| POST `/linear-swap-api/v1/swap_cross_trailing_order` | Place Trailing Order (Cross) | contract_code, volume, direction, offset, lever_rate, trailing_amount, trailing_percent, order_price_type | client_order_id | Yes |
-| POST `/linear-swap-api/v1/swap_trailing_cancel` | Cancel Trailing Order (Isolated) | contract_code, order_id | client_order_id | Yes |
-| POST `/linear-swap-api/v1/swap_cross_trailing_cancel` | Cancel Trailing Order (Cross) | order_id | contract_code, client_order_id | Yes |
-| POST `/linear-swap-api/v1/swap_trailing_cancelall` | Cancel All Trailing Orders (Isolated) | contract_code | direction, offset | Yes |
-| POST `/linear-swap-api/v1/swap_cross_trailing_cancelall` | Cancel All Trailing Orders (Cross) | None | contract_code, direction, offset | Yes |
-| POST `/linear-swap-api/v1/swap_trailing_openorders` | Unfilled trailing orders (Isolated) | contract_code | page_index, page_size | Yes |
-| POST `/linear-swap-api/v1/swap_cross_trailing_openorders` | Unfilled trailing orders (Cross) | None | contract_code, page_index, page_size | Yes |
-| POST `/linear-swap-api/v1/swap_trailing_hisorders` | History Trailing Orders (Isolated) | contract_code | status, page_index, page_size, sort_by, direct | Yes |
-| POST `/linear-swap-api/v1/swap_cross_trailing_hisorders` | History Trailing Orders (Cross) | None | contract_code, status, page_index, page_size, sort_by, direct | Yes |
 
 ### Transferring Interface
 | Endpoint | Description | Required | Optional | Authentication |
 |----------|-------------|----------|----------|----------------|
 | POST `/linear-swap-api/v1/swap_cross_transfer_state` | Query Transfer State (Cross) | None | None | Yes |
-| POST `/linear-swap-api/v1/swap_transfer` | Transfer between Spot and Futures | asset, amount, type | client_order_id | Yes |
 
 ---
 

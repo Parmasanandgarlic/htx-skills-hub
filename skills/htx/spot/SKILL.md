@@ -22,7 +22,6 @@ Spot trading on HTX using authenticated API endpoints. Requires API key and secr
 | `/v2/settings/common/currencies` | Returns all supported currencies with their configuration and display names | None | ts | No |
 | `/v1/settings/common/symbols` | Returns symbol settings with pricing and trading precision information | None | None | No |
 | `/v1/settings/common/market-symbols` | Returns market symbol configuration for spot trading | None | None | No |
-| `/v2/settings/common/chains` | Returns blockchain chain information including chain names and configuration | None | None | No |
 | `/v2/reference/currencies` | Returns currency and blockchain chain reference data | None | None | No |
 | `/v1/common/timestamp` | Returns current server timestamp in milliseconds | None | None | No |
 
@@ -73,7 +72,6 @@ Spot trading on HTX using authenticated API endpoints. Requires API key and secr
 | `/v1/margin/orders` | Applies for a margin loan on cross or isolated margin account | currency, amount | account-id | Yes |
 | `/v1/margin/orders/{order-id}/repay` | Repays a margin loan with interest | order-id, amount | None | Yes |
 | `/v1/margin/orders` | Returns margin loan orders and their status | None | currency, state, from, size | Yes |
-| `/v1/margin/accounts` | Returns margin account details including borrowed amounts and interest | None | account-id | Yes |
 | `/v1/margin/accounts/balance` | Returns detailed balance information for margin accounts | None | account-id | Yes |
 
 ---
