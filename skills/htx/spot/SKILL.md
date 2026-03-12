@@ -22,7 +22,6 @@ Spot trading on HTX using authenticated API endpoints. Requires API key and secr
 | `/v2/settings/common/currencies` | Returns all supported currencies with their configuration and display names | None | ts | No |
 | `/v1/settings/common/symbols` | Returns symbol settings with pricing and trading precision information | None | None | No |
 | `/v1/settings/common/market-symbols` | Returns market symbol configuration for spot trading | None | None | No |
-| `/v2/settings/common/chains` | Returns blockchain chain information including chain names and configuration | None | None | No |
 | `/v2/reference/currencies` | Returns currency and blockchain chain reference data | None | None | No |
 | `/v1/common/timestamp` | Returns current server timestamp in milliseconds | None | None | No |
 
@@ -49,13 +48,9 @@ Spot trading on HTX using authenticated API endpoints. Requires API key and secr
 | `/v2/account/asset-valuation` | Returns detailed asset valuation and portfolio composition | None | None | Yes |
 | `/v1/account/transfer` | Transfers assets between accounts | from-account, to-account, currency, amount | None | Yes |
 | `/v1/account/history` | Returns account history and transaction records | None | account-id, currency, type | Yes |
-| `/v1/account/ledger` | Returns detailed ledger entries for account transactions | account-id | currency, type, from-id, size | Yes |
 | `/v1/futures/transfer` | Transfers funds between spot trading account and futures contract account | currency, amount, type | None | Yes |
 | `/v1/point/account` | Returns current HTX points balance and history | None | None | Yes |
 | `/v1/point/transfer` | Transfers HTX points between accounts | from-user, to-user, amount | None | Yes |
-| `/v1/account/deduct-info` | Returns user deduction settings and information | None | None | Yes |
-| `/v1/account/deduct-currencies` | Returns list of currencies available for fee deduction | None | None | Yes |
-| `/v1/account/deduct-config` | Configures fee deduction method for spot and margin accounts | deductCurrency | None | Yes |
 
 ### Trading Endpoints
 
@@ -69,15 +64,6 @@ Spot trading on HTX using authenticated API endpoints. Requires API key and secr
 | `/v1/order/orders/getClientOrder` | Returns order details using client-order-id | client-order-id | None | Yes |
 | `/v1/order/matchresults` | Returns trade history and fill details | None | symbol, types, start-time, end-time, from, direct, size | Yes |
 
-### Conditional Order Endpoints
-
-| Endpoint | Description | Required | Optional | Authentication |
-|----------|-------------|----------|----------|----------------|
-| `/v1/stop-order/orders/place` | Places a conditional order that executes when trigger conditions are met | account-id, symbol, order-price, order-size, trigger-price, operator | order-type, trailing-rate, client-order-id | Yes |
-| `/v1/stop-order/orders/{order-id}/cancel` | Cancels a conditional order before it is triggered | order-id | None | Yes |
-| `/v1/stop-order/openOrders` | Returns list of open conditional orders not yet triggered | account-id | symbol, side, size | Yes |
-| `/v1/stop-order/orders` | Returns history of conditional orders | account-id | symbol, side, states, from, size | Yes |
-| `/v1/stop-order/orders/{order-id}` | Returns details of a specific conditional order | order-id | None | Yes |
 
 ### Margin Loan (Cross/Isolated) Endpoints
 
@@ -86,7 +72,6 @@ Spot trading on HTX using authenticated API endpoints. Requires API key and secr
 | `/v1/margin/orders` | Applies for a margin loan on cross or isolated margin account | currency, amount | account-id | Yes |
 | `/v1/margin/orders/{order-id}/repay` | Repays a margin loan with interest | order-id, amount | None | Yes |
 | `/v1/margin/orders` | Returns margin loan orders and their status | None | currency, state, from, size | Yes |
-| `/v1/margin/accounts` | Returns margin account details including borrowed amounts and interest | None | account-id | Yes |
 | `/v1/margin/accounts/balance` | Returns detailed balance information for margin accounts | None | account-id | Yes |
 
 ---
